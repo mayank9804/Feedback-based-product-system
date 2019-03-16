@@ -1,0 +1,274 @@
+<div class="ctr">
+  <div class="header">
+    <h2>Product Recommender System</h2>
+    <p>Never test the depth of river using both feet (Warren Buffett)</p>
+    <!-- <input type="search" class=""> -->
+  </div>
+  <div *ngIf='selected' class="alert">
+    Thank You for choosing product
+  </div>
+  <div class="content" *ngIf='!active'>
+    <div class="filters">
+      <div style="width: 82%; color: #f0f1f3;">
+        <h2>Filters</h2>
+      </div>
+      <ul>
+        <li>Low to High Price</li>
+        <li>High to Low Price</li>
+        <li>Popularity</li>
+        <li>Newest Arrivals</li>
+        <li>Best Selling</li>
+      </ul>
+    </div>
+    <div class="productsbar">
+      <div class="products">
+        <div class="p" *ngFor="let i of productsList" (click)='productdetailview(i)'>
+
+          <p style="font-weight:700;">{{i.model}}</p>
+          <p>{{i.brand}}</p>
+          <p>RAM: {{i.ram}}</p>
+          <p>Storage:{{i.storage}}</p>
+          <p>Price: {{i.price}}</p>
+          <p>Ratings: {{i.rating}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="productdetail" *ngIf='active'>
+  <button (click)='cancelDetailView()'>Back</button>
+  <div class="detailTemplate">
+    <h2>{{activeProduct.class}}</h2>
+    <p>NAME: {{activeProduct.model}}</p>
+    <p>BRAND: {{activeProduct.brand}}</p>
+    <p>RAM: {{activeProduct.ram}}</p>
+    <p>Storage Capacity: {{activeProduct.storage}}</p>
+    <p>Price: RS {{activeProduct.price}}</p>
+    <p>Ratings: {{activeProduct.rating}}</p>
+  </div>
+  <div class="footerbuttons">
+    <button class="selectbutton" (click)='select()'>SELECT</button>
+    <button class="selectbutton" (click)='startFeedback()'>Provide Feedback</button>
+  </div>
+
+</div>
+
+<div class="feedbackform" *ngIf='feedbackactive'>
+  <div class="header">
+    <h2>Your feedback is as valuable as you! Please proceed with your feedback</h2>
+  </div>
+
+  <form class="personalInformation">
+
+
+    <label for="">Overall Quality</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="quality" name="quality" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="quality" name="quality" value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="quality" name="quality" value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="quality" name="quality" value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="quality" name="quality" value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <label for="">Value</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="value" name="value" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="value" name="value" value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="value" name="value"value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="value" name="value" value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="value" name="value"value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <label for="">Purchase Experience</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="pe" name="pe" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="pe" name="pe"value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="pe" name="pe" value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="pe" name="pe"value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="pe" name="pe" value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <label for="">Installation or first use experience</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="fue" name="fue"  value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="fue"  name="fue"  value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="fue"  name="fue"  value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="fue"  name="fue" value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="fue"  name="fue"  value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <label for="">Usage experience</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="ue" name="ue"value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="ue"name="ue"value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="ue" name="ue" value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="ue" name="ue" value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="ue" name="ue" value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <label for="">After Purchase service</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Very Unsatisfied
+        <input type="radio" formControlName="aps" name="aps" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Unsatisfied
+        <input type="radio" formControlName="aps" name="aps"  value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Neutral
+        <input type="radio" formControlName="aps"  name="aps"  value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Satisfied
+        <input type="radio" formControlName="aps"  name="aps"  value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Very Satisfied
+        <input type="radio" formControlName="aps" name="aps"  value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+  
+
+    <label for="">How often do you use our product?</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Do not use
+        <input type="radio" formControlName="uop" name="uop" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Once a month
+        <input type="radio" formControlName="uop" name="uop" value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">2 to 3 times a month
+        <input type="radio" formControlName="uop" name="uop"  value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Once a week or more often
+        <input type="radio" formControlName="uop" name="uop" value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Daily
+        <input type="radio" formControlName="uop" name="uop"  value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+
+    
+    <label for="">Will you use or purchase this product again?</label>
+    <div class="optionsBox" style="position: relative;">
+      <label class="checkboxContainer">Never used
+        <input type="radio" formControlName="ptp" name="ptp" value="Very Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Definitely , will not
+        <input type="radio" formControlName="ptp" name="ptp"  value="Unsatisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Might or Might not
+        <input type="radio" formControlName="ptp" name="ptp" value="Neutral">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Probably
+        <input type="radio" formControlName="ptp" name="ptp"  value="Satisfied">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer">Definitely
+        <input type="radio" formControlName="ptp" name="ptp"  value="Very Satisfied">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    
+
+    
+  <label for="">Leave a comment</label>
+    <input type="text" formControlName="commentbox" name="commentbox" placeholder="Your precious comment goes here" style="width: 80%; height: 100px;">
+    
+  <button type="submit" class="formsubmit">Submit</button>
+  
+  </form>
+</div>
+
+<router-outlet></router-outlet>
